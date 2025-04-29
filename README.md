@@ -3,6 +3,7 @@ Criado durante aulas da Unidade Curricular "Usabilidade e Desenvolvimento Web"
 
 run:
 
+    conda activate [environment name]
     python manage.py runserver
 
 open:
