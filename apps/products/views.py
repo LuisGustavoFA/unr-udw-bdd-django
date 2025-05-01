@@ -15,6 +15,8 @@ def add_product(request):
             f.save()
             form.save_m2m()
             return redirect('products:list_products')
+        else:
+            print("Formulário inválido:", form.errors)
     form = ProductForm()
     context['form'] = form
     return render(request, template_name, context)

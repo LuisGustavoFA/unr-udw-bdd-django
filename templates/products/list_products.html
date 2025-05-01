@@ -35,10 +35,10 @@
           <td>{{ product.is_active }}</td>
           <td>{{ product.category }}</td>
           <td>
-            <a href="{% url 'categories:edit_product' product.id %}">Editar</a>
+            <a href="{% url 'products:edit_product' product.id %}">Editar</a>
           </td>
           <td>
-            <a href="{% url 'categories:delete_product' product.id %}" >Excluir</a>
+            <a href="{% url 'products:delete_product' product.id %}" >Excluir</a>
           </td>
         </tr>
       {% endfor %}

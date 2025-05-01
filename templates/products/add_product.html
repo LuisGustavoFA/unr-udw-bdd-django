@@ -6,7 +6,7 @@
 
 {% block body %}
   <br />
-  <b>Cadastro de Categoria</b>
+  <b>Cadastro de Produto</b>
   <br />
   <br />
   <form action="" method="POST">
@@ -19,6 +19,16 @@
     <label>Descricao:</label>
     <br />
     {{ form.description }}
+    <br />
+    <br />
+    <label>Data de Fabricação:</label>
+    <br />
+    {{ form.date_fabrication }}
+    <br />
+    <br />
+    <label>Categoria:</label>
+    <br />
+    {{ form.category }}
     <br />
     <br />
     <button type="submit">Salvar</button>
