@@ -16,7 +16,7 @@ class Order(models.Model):
     class Meta:
         verbose_name = 'Pedido'
         verbose_name_plural = 'Pedidos'
-        ordering =['-created_on']
+        ordering =['id']
 
     def __str__(self):
         return "%s" % (self.total_price) 
