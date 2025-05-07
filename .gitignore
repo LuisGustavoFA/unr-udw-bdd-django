@@ -5,3 +5,5 @@ modeloapp2/__pycache__/*
 /apps/core/migrations/*
 /apps/products/__pycache__/*
 /apps/products/migrations/*
+/apps/socialNetworks/__pycache__/*
+/apps/socialNetworks/migrations/*
