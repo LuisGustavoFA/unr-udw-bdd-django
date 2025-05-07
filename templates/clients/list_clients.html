@@ -9,7 +9,7 @@
     <a href="{% url 'clients:add_client' %}">Cadastro de novo cliente</a>
   <br />
   <br />
-  <b>Lista de Categorias</b>
+  <b>Lista de Clientes</b>
   <br />
   <br />
   <table border="1">
@@ -30,7 +30,7 @@
       {% for client in clients %}
         <tr>
           <th>{{ client.id }}</th>
-          <th>{{ client.first_name }}</th>
+          <td>{{ client.first_name }}</td>
           <td>{{ client.last_name }}</td>
           <td>{{ client.address }}</td>
           <td>{{ client.cell_phone }}</td>
