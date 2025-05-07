@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'categories.apps.CategoriesConfig',
     'products.apps.ProductsConfig',
+    'socialNetworks.apps.SocialnetworksConfig',
 ]
 
 MIDDLEWARE = [
