@@ -8,8 +8,10 @@ class Product(models.Model):
     description = models.TextField('Descricao', max_length=100)
     date_fabrication = models.DateField('Data Fabricacao', auto_now=False, auto_now_add=False) 
     is_active = models.BooleanField('Ativo', default=False)
+    photo = models.ImageField('Foto', upload_to='photos')
+    doc = models.FileField('Documentos', upload_to='docs')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
+    
     class Meta:
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'

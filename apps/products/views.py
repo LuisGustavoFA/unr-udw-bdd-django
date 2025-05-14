@@ -9,14 +9,12 @@ def add_product(request):
     template_name = 'products/add_product.html'
     context = {}
     if request.method == 'POST':
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             f = form.save(commit=False)
             f.save()
             form.save_m2m()
             return redirect('products:list_products')
-        else:
-            print("Formulário inválido:", form.errors)
     form = ProductForm()
     context['form'] = form
     return render(request, template_name, context)
@@ -34,7 +32,7 @@ def edit_product(request, id_product):
     context ={}
     product = get_object_or_404(Product, id=id_product)
     if request.method == 'POST':
-        form = ProductForm(request.POST, instance=product)
+        form = ProductForm(request.POST, request.FILES,  instance=product)
         if form.is_valid():
             form.save()
             return redirect('products:list_products')
