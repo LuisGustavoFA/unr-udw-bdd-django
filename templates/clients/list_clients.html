@@ -24,8 +24,9 @@
         <th>E-mail</th>
         <th>Genero</th>
         <th>Redes sociais</th>
-        <th> -- </th>
-        <th> -- </th>
+        <th></th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -51,9 +52,13 @@
             <td>
                 <a href="{% url 'clients:delete_client' client.id %}">Excluir</a>
             </td>
+            <td>   
+                <a href="{% url 'orders:add_order' client.id %}">Pedir</a>
+            </td>
         </tr> 
     {% endfor %}
     </tbody>
 </table>
+
 
 {% endblock body %}

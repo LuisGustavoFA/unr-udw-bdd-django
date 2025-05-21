@@ -1,43 +1,89 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Lista de Pedidos - {{ block.super }}
-{% endblock %}
+
+    Lista de Pedidos - {{ block.super }}
+
+{% endblock title %}
 
 {% block body %}
-  <br />
-    <a href="{% url 'orders:add_order' %}">Cadastro de novo pedido</a>
-  <br />
-  <br />
-  <b>Lista de Pedidos</b>
-  <br />
-  <br />
-  <table border="1">
+
+<br />
+<b>Lista de Pedidos</b>
+<table border="1">
     <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Preco Total</th>
-        <th scope="col">Status</th>
-        <th scope="col">Cliente</th>
-        <th scope="col">--</th>
-        <th scope="col">--</th>
-      </tr>
+        <tr>
+            <th>ID</th>
+            <th>Status</th>
+            <th>Cliente</th>
+            <th>Preco Total</th>
+            <th>Itens de pedido</th>
+            <th> -- </th>
+            <th> -- </th>
+        </tr>
     </thead>
     <tbody>
-      {% for order in orders %}
+    {% for order in orders %}
         <tr>
-          <th>{{ order.id }}</th>
-          <td>{{ order.total_price }}</td>
-          <td>{{ order.status }}</td>
-          <td>{{ order.client }}</td>
-          <td>
-            <a href="{% url 'orders:edit_order' order.id %}">Editar</a>
-          </td>
-          <td>
-            <a href="{% url 'orders:delete_order' order.id %}" >Excluir</a>
-          </td>
-        </tr>
-      {% endfor %}
+            <td>
+                {% if order.status == 'Finalizado' or order.status == 'Cancelado' %}
+                    <p style="color:darkgray;" >{{ order.id }}</p>
+                {% else %}
+                    {{ order.id }}
+                {% endif %}
+            </td>
+            <td>
+                {% if order.status == 'Finalizado' or order.status == 'Cancelado' %}
+                    <p style="color:darkgray;" >{{ order.status }}</p>
+                {% else %}
+                    {{ order.status }}
+                {% endif %}
+             </td>
+            <td>
+                {% for client in clients %}
+                    {% if order.client_id == client.id %}
+                        {% if order.status == 'Finalizado' or order.status == 'Cancelado' %}
+                            <p style="color:darkgray;" >{{ client.first_name }} {{ client.last_name }}</p>
+                        {% else %}
+                            {{ client.first_name }} {{ client.last_name }}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}   
+            </td>
+            <td>
+                {% if order.status == 'Finalizado' or order.status == 'Cancelado' %}
+                    <p style="color:darkgray;" >R$ {{ order.total_price }}</p>
+                {% else %}
+                    R$ {{ order.total_price }}
+                {% endif %}
+            </td>
+            <td>
+                {% if order.status == 'Finalizado' or order.status == 'Cancelado' %}
+                    <a href="#" class="btn btn-primary btn-sm disabled">Adicionar itens</a>
+                {% else %}
+                    <a href="{% url 'orders:add_order_item' order.id %}" class="btn btn-primary btn-sm">Adicionar itens</a>
+                {% endif %}
+                <br />
+                <br />
+                {% for order_item in order_items %}
+                    {% if order_item.order_id == order.id %}
+                        Produto: {{ order_item.product}}<br /> 
+                        Quantidade: {{ order_item.quantity}}<br />
+                        Valor Unitario: R$ {{ order_item.unitary_price }}<br />
+                        <a href="{% url 'orders:delete_order_item' order_item.id %}">Excluir Item</a><br /><br />
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                <a href="{% url 'orders:edit_order_status' order.id %}">Alterar Status</a>
+            </td>
+            <td>
+                <a href="{% url 'orders:delete_order' order.id %}">Excluir</a>
+            </td>
+            </tr> 
+        {% endfor %}
     </tbody>
-  </table>
-{% endblock %}
+</table>
+
+
+{% endblock body %}
