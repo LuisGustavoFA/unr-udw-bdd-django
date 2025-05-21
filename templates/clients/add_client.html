@@ -1,41 +1,55 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Adicionar Cliente - {{ block.super }}
-{% endblock %}
+
+    Adicionar Cliente - {{ block.super }}
+
+{% endblock title %}
 
 {% block body %}
-  <br />
-  <b>Cadastro de Clientes</b>
-  <br />
-  <br />
-  <form action="" method="POST">
-    {% csrf_token %}
-    <label>Nome:</label>
-    <br />
+
+<br />
+<b>Cadastro de Cliente</b>
+<br />
+<br />
+<form action="" method="POST">
+{% csrf_token %}
+    <label>Nome</label>
+    <br />   
     {{ form.first_name }}
     <br />
-    <label>Sobrenome:</label>
     <br />
+    <label>Sobrenome</label>
+    <br />    
     {{ form.last_name }}
     <br />
-    <label>Endereco:</label>
     <br />
+    <label>Endereco</label>
+    <br />    
     {{ form.address }}
     <br />
-    <label>Celular:</label>
     <br />
+    <label>Telefone</label>
+    <br />    
     {{ form.cell_phone }}
     <br />
-    <label>Email:</label>
     <br />
-    {{ form.email }}
+    <label>E-mail</label>
+    <br />   
+    {{ form.email}}
     <br />
-    <label>Genero:</label>
     <br />
+    <label>Genero</label>
+    <br />   
     {{ form.gender }}
     <br />
     <br />
-    <button type="submit">Salvar</button>
-  </form>
-{% endblock %}
+    <label>Redes sociais</label>
+    <br />    
+    {{ form.client_socialnetwork }}
+    <br />
+    <br />
+    <button type="submit">Salvar</button>       
+</form>
+
+{% endblock body %}
