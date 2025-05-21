@@ -20,7 +20,23 @@
     <a href="{% url 'clients:list_clients' %}" ><button onclick="mudarCor()">Clientes</button></a>
     <a href="{% url 'orders:list_orders' %}" ><button onclick="mudarCor()">Pedidos</button></a>
     <br />
+    
+    {% if user.is_authenticated %}
+    <br />
+    <a href="{% url 'core:home' %}"><button>{{ user.get_full_name|default:user.username }}</button></a>
+    <a href="{% url 'accounts:user_change_information' user.username %}"><button>Conta</button></a>
+    <a href="{% url 'accounts:user_change_password' %}"><button>Trocar senha</button></a>
+    <a href="{% url 'accounts:user_logout' %}"><button>Sair</button></a>
+    <br />
 
+    {% else %}
+    <br>
+    <a href="{% url 'accounts:add_user' %}"><button>Login</button></a>
+
+    {% endif %}
+
+
+    <br />
     <br />
     <form action="{% url 'clients:search_clients' %}" method="GET">
         <input name="query" type="text" placeholder="Sobrenome do cliente" aria-label="Buscar">
