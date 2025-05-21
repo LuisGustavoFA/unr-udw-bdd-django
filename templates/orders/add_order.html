@@ -1,31 +1,21 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Adicionar Pedido - {{ block.super }}
-{% endblock %}
+
+    Adicionar Pedido - {{ block.super }}
+
+{% endblock title %}
 
 {% block body %}
-  <br />
-  <b>Cadastro de Pedido</b>
-  <br />
-  <br />
-  <form action="" method="POST">
-    {% csrf_token %}
-    <label>Preco Total:</label>
-    <br />
-    {{ form.total_price }}
-    <br />
-    <br />
-    <label>Status:</label>
-    <br />
-    {{ form.status }}
-    <br />
-    <br />
-    <label>Cliente:</label>
-    <br />
-    {{ form.client }}
-    <br />
-    <br />
-    <button type="submit">Salvar</button>
-  </form>
-{% endblock %}
+
+<br />
+<br />
+<b>Deseja abrir um pedido? </b>
+<form action="" method="POST">
+{% csrf_token %}
+    <button type="submit">Sim</button> <a href="{% url 'clients:list_clients' %}">Nao</a>     
+</form>
+<br />
+<br />     
+
+{% endblock body %}
