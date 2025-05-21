@@ -20,6 +20,11 @@
     <a href="{% url 'clients:list_clients' %}" ><button onclick="mudarCor()">Clientes</button></a>
     <a href="{% url 'orders:list_orders' %}" ><button onclick="mudarCor()">Pedidos</button></a>
     <br />
+
+    <form action="{% url 'clients:search_clients' %}" method="GET">
+        <input name="query" type="text" placeholder="Sobrenome do cliente" aria-label="Buscar">
+        <button type="submit">Buscar</button>
+    </form> 
     
     {% block body %}
     
